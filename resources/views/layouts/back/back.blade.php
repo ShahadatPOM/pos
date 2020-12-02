@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Journal Management System</title>
+    <title>POS Management System</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('back_temp/plugins/fontawesome-free/css/all.min.css') }}">
@@ -120,7 +120,7 @@
             <a href="#" class="brand-link">
                 <img src="{{ asset('back_temp/dist/img/favicon.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Journal Management</span>
+                <span class="brand-text font-weight-light">POS Management</span>
             </a>
             
 
@@ -169,7 +169,7 @@
                         </li>
                       
                         {{--  Reviewer  --}}
-                        <li class="nav-item has-treeview">
+                        {{--  <li class="nav-item has-treeview">
                             <a href="#" class=" nav-link">
                                 <i style="color: #f55" class="fa fa-user-circle"></i>
                                 <p>Registered Reviewer</p>
@@ -189,13 +189,13 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>  --}}
 
                         {{--  Menuscript  --}}
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
                                 <i style="color: #f55" class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                                <p>Manuscripts</p>
+                                <p>Foods</p>
                                 <i style="color: #f55" class="right fas fa-angle-left"></i>
                             </a>
                             <ul class="nav nav-treeview">
@@ -230,7 +230,7 @@
                         <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
                                 <i style="color: #f55" class="fa fa-arrow-circle-right"></i>
-                                <p>Manuscript Categories</p>
+                                <p>Food Categories</p>
                                 <i style="color: #f55" class="right fas fa-angle-left"></i>
                             </a>
                             <ul class="nav nav-treeview">
@@ -250,7 +250,7 @@
                         </li>
                         
                   
-                        <li class="nav-item has-treeview ">
+                        {{--  <li class="nav-item has-treeview ">
                             <a href="#" class="nav-link">
                                 <i style="color: #f55" class="fas fa-tags"></i>
                                 <p>Manuscripts</p>
@@ -270,7 +270,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>  --}}
                         
                         <li class="nav-header">Your Account</li>
                         <li class="nav-item">

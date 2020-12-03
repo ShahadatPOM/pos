@@ -24,115 +24,221 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column co" data-widget="treeview" role="menu"
                 data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                 with font-awesome or any other icon font library -->
-                {{--  Users  --}}
-                
-                {{--  {{ dd(Auth::user()->user_type_id)}} --}}
+
+                    {{--  Order  --}}
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
                         <i style="color: #E75B1E" class="fas fa-tags"></i>
-                        <p>Registered Users</p>
+                        <p>Manage Order</p>
                         <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Approved</p>
+                                <p>Pos Invoice</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                <p>Pending</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-              
-                
-                <li class="nav-item has-treeview ">
-                    <a href="#" class="nav-link">
-                        <i style="color:#E75B1E" class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                        <p>Foods</p>
-                        <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>New Comming</p>
+                                <p>Order List</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i style="color: #E75B1E" class="fa fa-reply nav-icon"></i>
-                                <p>Under Revision</p>
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Pending Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i style="color: #E75B1E" class="fa fa-share nav-icon"></i>
-                                <p>Reviewed</p>
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Complete Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i style="color: #E75B1E" class="fa fa-check nav-icon"></i>
-                                <p>Published</p>
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Cancel Order</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Pos Setting</p>
                             </a>
                         </li>
                     </ul>
                 </li>
 
-                {{--  manuscript category  --}}
+                {{--  Reservation  --}}
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
-                        <i style="color:#E75B1E" class="fa fa-arrow-circle-right"></i>
-                        <p>Food Categories</p>
+                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <p>Reservation</p>
                         <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Create</p>
+                                <p>Reservation</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i style="color: #E75B1E" class="far fa-circle nav-icon"></i>
-                                <p>List</p>
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Add Booking</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                
-          
-                {{--  <li class="nav-item has-treeview ">
+
+                {{--  Food Management  --}}
+                <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
-                        <i style="color: #f55" class="fas fa-tags"></i>
-                        <p>Manuscripts</p>
-                        <i style="color: #f55" class="right fas fa-angle-left"></i>
+                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <p>Food Management</p>
+                        <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
+                                <p>Manage Category</p>
+                                <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
+                                        <p>Add Category</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                        <p>Category List</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Manage Food</p>
+                                <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
+                                        <p>Add Food</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                        <p>Food List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                        <p>Food Varient</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                        <p>Food Availability</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Manage Addons</p>
+                                <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
+                                        <p>Add Add-ons</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                        <p>Add-ons List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                        <p>Add-ons Assign List</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                        <p>Food Availability</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                {{--  Report  --}}
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link">
+                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <p>Report</p>
+                        <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i style="color: #f55" class="fas fa-plus nav-icon"></i>
-                                <p>Assigned</p>
+                                <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
+                                <p>Stock Report (Product Wise)</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i style="color: #f55" class="fas fa-plus nav-icon"></i>
-                                <p>Checked</p>
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Sell Report</p>
                             </a>
                         </li>
                     </ul>
-                </li>  --}}
-                
-                <li class="nav-header">Your Account</li>
+                </li>
+
+                {{--  Default  --}}
+                <li class="nav-header">Default</li>
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link">
+                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <p>User</p>
+                        <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
+                                <p>Add User</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>User List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i style="color: #E75B1E" class="far fa-user-circle nav-icon"></i>

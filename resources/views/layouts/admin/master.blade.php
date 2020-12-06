@@ -1,9 +1,9 @@
-@extends('layouts.back.base')
+@extends('layouts.admin.base')
 @section('base.content')
 
-@include('layouts.back.partial.header')
+@include('layouts.admin.partial.header')
 
-@include('layouts.back.partial.sidebar')
+@include('layouts.admin.partial.sidebar')
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -15,6 +15,6 @@
 <!-- /.content-wrapper -->
 
 <!-- /.Footer -->
-@include('layouts.back.partial.footer')
+@include('layouts.admin.partial.footer')
 
 @endsection

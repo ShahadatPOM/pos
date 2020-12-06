@@ -8,4 +8,5 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Dashboard
 Route::get('/dashboard', 'AdminController@dashboard')->middleware('auth');

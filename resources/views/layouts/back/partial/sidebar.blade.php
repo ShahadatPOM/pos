@@ -204,7 +204,7 @@
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Stock Report (Product Wise)</p>
+                                <p>Stock Report</p>
                             </a>
                         </li>
                         <li class="nav-item">

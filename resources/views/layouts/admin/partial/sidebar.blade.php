@@ -16,7 +16,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a style="text-transform: capitalize;" href="{{ url('profile', Auth::id()) }}" class="d-block">{{Auth::user()->name}}</a>
+                <a style="text-transform: capitalize;" href="{{ url('profile', Auth::id()) }}" class="d-block">@auth{{Auth::user()->name}}@endauth</a>
             </div>
         </div>
 
@@ -117,7 +117,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('category.index') }}" class="nav-link">
                                         <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                         <p>Category List</p>
                                     </a>

@@ -10,14 +10,16 @@ use Redirect,Response;
 class CategoryController extends Controller
 {
 public function index(){
+    return view('admin.category.index');
+}
+
+public function show(Request $request){
     if(request()->ajax()){
-        return datatables()->of(Category::select('*'))
-        ->addColumn('action', 'Datatables.action')
+        return datatables()->of(Category::all())
+       
         ->rawColumns(['action'])
-        ->addIndexColumn()
         ->make(true);
     }
-    return view('admin.category.index');
 }
 
 public function store(Request $request){
@@ -28,19 +30,17 @@ public function store(Request $request){
         return Response::json();
 }
 
-public function edit($id)
+public function edit(Request $request)
 {   
-    $where = array('id' => $id);
-    $category  = Category::where($where)->first();
+    $category  = Category::where('id', $request->categoryId)->first();
   
     return Response::json($category);
 }
 
-public function destroy($id)
+public function destroy(Request $request)
 {
-    $category = Category::where('id',$id)->delete();
-  
-    return Response::json($category);
+    $category = Category::where('id', $request->categoryId)->delete();
+    return Response::json();
 }
 
 

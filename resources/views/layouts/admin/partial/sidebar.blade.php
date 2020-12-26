@@ -131,13 +131,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('food.create') }}" class="nav-link">
                                         <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
                                         <p>Add Food</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('food.index') }}" class="nav-link">
                                         <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                         <p>Food List</p>
                                     </a>

@@ -52,66 +52,30 @@
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    
-                                    <div class="row" id="dynamicAddRemove">
-                                        <div class="col-5">
-                                            <div class="form-group">
-                                                <label>Your/Author Name</label>
-                                                <input type="text" class="form-control" name="name[]"
-                                                    placeholder="Enter name">
-                                                @error('name')
-                                                <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="form-group">
-                                                <label>Author Email</label>
-                                                <input type="email" class="form-control" name="email[]"
-                                                    placeholder="Enter email">
-                                                @error('email')
-                                                <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="col-1">
-                                            <div style="margin: 30px 0 0 30px;">
-                                                <button type="button" name="add" id="ad-btn" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                                                {{-- <button class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="newRow"></div>
                                     <div class="form-group">
-                                        <label>Summery</label>
-                                        <textarea name="summery" id="summery" class="form-control"
-                                            placeholder="Write your abstract here"></textarea>
+                                        <label>Vat</label>
+                                        <input type="number" class="form-control" name="vat" placeholder="Add vat">
+                                        @error('vat')
+                                        <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    <div class="form-group">
-                                        <label>Menuscript Category</label>
-                                        <select class="form-control" name="category_id">
-                                            <option selected disabled>Select Category</option>
-                                            @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>                                                
-                                            @endforeach
-                                        </select>
-                                    </div>
+
                                     <div class="form-group">
                                         <label>Your Country</label>
-                                        <select class="form-control" name="country_id">
-                                            <option selected disabled>Select Country</option>
-                                            <option value="1">Bangladesh</option>
-                                            <option value="2">India</option>
+                                        <select class="form-control" name="status">
+                                            <option selected disabled>Select Status</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Upload Manuscript</label>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="paper_file">
+                                            <input type="file" class="custom-file-input" name="food_image">
                                        
                                             <label class="custom-file-label">Choose file</label>
                                         </div>
-                                        @error('paper_file')
+                                        @error('food_image')
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
                                     </div>

@@ -23,7 +23,8 @@ Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
 
 // Foods
 Route::group(['prefix' => 'food', 'as' => 'food.'], function() {
-    Route::get('/', 'FoodController@index')->name('index');
+    Route::get('/index', 'FoodController@index')->name('index');
+    Route::post('/show', 'FoodController@show')->name('show');
     Route::get('/create', 'FoodController@create')->name('create');
     Route::post('/store', 'FoodController@store')->name('store');
     Route::get('/edit/{id}', 'FoodController@edit')->name('edit');

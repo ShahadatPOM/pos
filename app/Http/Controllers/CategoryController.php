@@ -22,7 +22,11 @@ public function show(Request $request){
     }
 }
 
-public function store(Request $request){
+public function store(Request $request, $id = false){
+    if($id != false){
+        dd($id);
+        $category = Category::where('id', $id)->first();
+    }
     Category::Create([
         'categoryName' => $request->categoryName, 
         'status' => $request->status,

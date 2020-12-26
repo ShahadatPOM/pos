@@ -77,7 +77,8 @@
                     {title: 'Status', data: 'status', name: 'status'},
                    
                     { title:'Action', className: "text-center", data : function(data){
-                        return ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteCategory(this)" data-panel-id="'+data.id+'">'+
+                        return '<a class="btn btn-info btn-sm" onclick="editCategory(this)" data-panel-id="'+data.id+'"><i class="fa fa-edit"></i></a>'+
+                                ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteCategory(this)" data-panel-id="'+data.id+'">'+
                                     '<i class="fa fa-trash"></i> </button>';
                                 },
                         orderable: false, searchable:false

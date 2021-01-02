@@ -69,7 +69,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Upload Manuscript</label>
+                                        <label>Upload Image</label>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="food_image">
                                        

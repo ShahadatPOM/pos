@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 @section('master.content')
 <div class="container">
-    <h2>Food Categories</h2>
+    <h2>Foods</h2>
     <hr>
     <a href="{{ route('food.create') }}" class="btn btn-info ml-3">Add New</a>
     <br><br>
@@ -19,7 +19,6 @@
             </tr>
         </thead>
         <tbody>
-            @if($foods)
             @foreach($foods as $food)
             <tr>
                 <td>{{ $food->id }}</td>
@@ -43,12 +42,6 @@
                 </td>
             </tr>
             @endforeach
-            @else
-            <tr>
-                <td colspan="7" style="text-align: center; color: grey">No pending menuscript found</td>
-            </tr>
-            @endif
-
         </tbody>
     </table>
 </div>

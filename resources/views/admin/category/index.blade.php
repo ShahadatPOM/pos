@@ -3,64 +3,57 @@
 <div class="container">
     <h2>Food Categories</h2>
     <hr>
-    <a href="javascript:void(0)" class="btn btn-info ml-3" id="createNewCategory">Add New</a>
+    <a href="{{ route('category.create') }}" class="btn btn-info ml-3">Add New</a>
     <br><br>
 
-    <table class="table table-bordered table-striped" id="category_datatable">
-        
+    <table class="table table-bordered table-striped" id="category_table">
+        <thead>
+            <tr>
+                <th class="text-center" width="5%">ID</th>
+                <th class="text-center" width="15%">Image</th>
+                <th class="text-center" width="15%">Category</th>
+                <th class="text-center" width="15%">Status</th>
+                <th class="text-center" width="10%">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($categories as $category)
+            <tr>
+                <td>{{ $category->id }}</td>
+                <td>
+                    <img class=" img-fluid" style="width: 50px" src="{{ asset('category/'. $category->cat_image) }}" alt="Category image">
+                </td>
+                <td>{{ $category->categoryName }}</td>
+                <td>
+                    @if($category->status == 1)
+                    <span class="badge badge-warning">Active</span>
+                    @else
+                    <span class="badge badge-danger">Inactive</span>
+                    @endif
+                </td>
+                <td class="text-center">
+                    <a href="{{ route('category.edit', $category->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>
+                    <form action="{{ route('category.delete', $category->id) }}" method="post"
+                        style="display: inline-block">
+                    
+                        @csrf
+                        <button onclick="alert('Are You Sure to DELETE!')" class="btn btn-sm btn-danger"><i
+                                class="fas fa-trash"></i></button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 
-{{--  Category Modal Began  --}}
-<div class="modal fade modal-md " id="categoryModal">
-    <div class="modal-dialog modal-lg ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="categoryModalTitle"></h4>
-            </div>
-            <div class="modal-body">
-                <form id="categoryForm" name="categoryForm" class="form-horizontal">
-                    @csrf
-                    <input type="hidden" name="category_id" id="category_id">
-                    <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Category Name</label>
-                        <div class="col-sm-12">
-                            <input type="text" class="form-control" id="categoryName" name="categoryName" placeholder="Enter Tilte"
-                                value="" maxlength="50">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Image</label>
-                        <div class="col-sm-12">
-                            <input type="file" class="form-control" id="" name="cat_image"
-                                placeholder="Enter Description" value="">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Status</label>
-                        <div class="col-sm-12">
-                            <select class="form-control" name="status">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary" id="saveBtn"></button>
-                        <button class="btn btn-danger"  data-dismiss="modal" aria-label="Close">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-{{--  Category Modal end  --}}
-
-
 @push('base.js')
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script>
+            $('#category_table').DataTable();
+    </script>
+
+{{--  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>  --}}
+    {{--  <script>
             $('#category_datatable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -77,7 +70,9 @@
                     {title: 'Status', data: 'status', name: 'status'},
                    
                     { title:'Action', className: "text-center", data : function(data){
-                        return ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteCategory(this)" data-panel-id="'+data.id+'">'+
+                        return ' <button type="button" class="btn btn-warning btn-sm" onclick="editCategory(this)" data-panel-id="'+data.id+'">'+
+                            '<i class="fa fa-edit"></i> </button>'+
+                            ' <button type="button" class="btn btn-danger btn-sm" onclick="deleteCategory(this)" data-panel-id="'+data.id+'">'+
                                     '<i class="fa fa-trash"></i> </button>';
                                 },
                         orderable: false, searchable:false
@@ -104,7 +99,7 @@
                         cache: false,
                         data: {_token: "{{csrf_token()}}",'categoryId': categoryId},
                         success: function (data) {
-                            $('#category_datatable').DataTable().clear().draw();
+                            $('#category_datatable').DataTable().draw();
                         }
                     });
                 
@@ -113,7 +108,11 @@
 
             function editCategory(x) {
                 categoryId = $(x).data('panel-id');
+                    
                     $('#saveBtn').html("update");
+
+                    
+
                     $('#categoryModalTitle').html("Edit Category");
                     $('#categoryModal').modal('show');
 
@@ -123,14 +122,17 @@
                         cache: false,
                         data: {_token: "{{csrf_token()}}",'categoryId': categoryId},
                         success: function (data) {
+
                             console.log(data);
                             $('#categoryName').val(data.categoryName);
-                            $('#category_datatable').DataTable().clear().draw();
+                            $('#category_id').val(data.id);
+                            {{--  $('#saveBtn').attr('action', 'category/update/'+data.id);  --}}
+                            {{--  $('#category_datatable').DataTable().draw();  --}}
                         }
                     });
             }
 
-        if ($("#categoryForm").length > 0) {
+        {{--  if ($("#categoryForm").length > 0) {
             $("#categoryForm").validate({
                 rules: {
                     categoryName: "required",
@@ -141,7 +143,7 @@
         
             var actionType = $('#saveBtn').val();
             $('#saveBtn').html('Sending..');
-                
+            
             $.ajax({
                 data: $('#categoryForm').serialize(),
                 url: "{{ route('category.store') }}",
@@ -163,9 +165,9 @@
             });
             }
         });
-        }
+        }  --}}
     
-    </script>
+    {{--  </script>  --}}  --}}
 
 @endpush
 @endsection

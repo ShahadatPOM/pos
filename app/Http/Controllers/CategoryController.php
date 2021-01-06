@@ -4,48 +4,73 @@ namespace App\Http\Controllers;
 
 use DataTables;
 use App\Category;
+use Image;
 use Illuminate\Http\Request;
-use Redirect,Response;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
 public function index(){
-    return view('admin.category.index');
+    $categories = Category::all();
+    return view('admin.category.index', compact('categories'));
 }
 
-public function show(Request $request){
-    if(request()->ajax()){
-        return datatables()->of(Category::all())
-       
-        ->rawColumns(['action'])
-        ->make(true);
+public function create(){
+    return view('admin.category.create');
+}
+
+public function store(Request $request){
+
+    $category = new Category();
+    $category->categoryName = $request->categoryName;
+    $category->status = $request->status;
+    $category->save();
+
+    if ($request->hasFile('cat_image')) {
+        $originalName = $request->cat_image->getClientOriginalName();
+        $uniqueImageName = $request->categoryName.$originalName;
+        $image = Image::make($request->cat_image);
+        $image->resize(280, 280);
+        $image->save(public_path().'/category/'.$uniqueImageName);
+        $category->cat_image = $uniqueImageName;
+        $category->save();
     }
+    Alert::toast('category added successfully', 'success');
+    return redirect()->route('category.index');
 }
 
-public function store(Request $request, $id = false){
-    if($id != false){
-        dd($id);
+public function edit($id){
+    $category = Category::where('id', $id)->first();
+    return view('admin.category.edit', compact('category'));
+}
+
+public function update(Request $request, $id){
+    $category = Category::where('id', $id)->first();
+    
+    $category->categoryName = $request->categoryName;
+    $category->status = $request->status;
+    $category->save();
+
+    if ($request->hasFile('cat_image')) {
+        $originalName = $request->cat_image->getClientOriginalName();
+        $uniqueImageName = $request->categoryName.$originalName;
+        $image = Image::make($request->cat_image);
+        $image->resize(280, 280);
+        $image->save(public_path().'/category/'.$uniqueImageName);
+        $category->cat_image = $uniqueImageName;
+        $category->save();
+    }
+    Alert::toast('category updated successfully', 'success');
+
+    return redirect()->route('category.index');
+
+}
+
+    public function delete(Request $request, $id){
         $category = Category::where('id', $id)->first();
+        $category->delete();
+        Alert::toast('category deleted successfully', 'success');
+        return back();
     }
-    Category::Create([
-        'categoryName' => $request->categoryName, 
-        'status' => $request->status,
-        ]);        
-        return Response::json();
-}
-
-public function edit(Request $request)
-{   
-    $category  = Category::where('id', $request->categoryId)->first();
-  
-    return Response::json($category);
-}
-
-public function destroy(Request $request)
-{
-    $category = Category::where('id', $request->categoryId)->delete();
-    return Response::json();
-}
-
 
 }

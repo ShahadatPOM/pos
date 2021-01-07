@@ -23,11 +23,10 @@ Route::group(['prefix' => 'category', 'as' => 'category.'], function() {
 
 // Foods
 Route::group(['prefix' => 'food', 'as' => 'food.'], function() {
-    Route::get('/index', 'FoodController@index')->name('index');
-    Route::post('/show', 'FoodController@show')->name('show');
-    Route::get('/create', 'FoodController@create')->name('create');
-    Route::post('/store', 'FoodController@store')->name('store');
-    Route::get('/edit/{id}', 'FoodController@edit')->name('edit');
-    Route::post('/update/{id}', 'FoodController@update')->name('update');
-    Route::post('/delete', 'FoodController@destroy')->name('destroy');
+    Route::get('index', 'FoodController@index')->name('index');
+    Route::get('create', 'FoodController@create')->name('create');
+    Route::post('store', 'FoodController@store')->name('store');
+    Route::get('edit/{id}', 'FoodController@edit')->name('edit');
+    Route::post('update/{id}', 'FoodController@update')->name('update');
+    Route::post('delete/{id}', 'FoodController@delete')->name('delete');
 });

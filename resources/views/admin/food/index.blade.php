@@ -38,7 +38,12 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <a href="#" class="btn btn-sm btn-success" title="view"><i class="fa fa-eye"></i></a>
+                    <a href="{{ route('food.edit', $food->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>
+                    <form action="{{ route('food.delete', $food->id) }}" method="post" style="display: inline-block">
+                        @csrf
+                        <button onclick="alert('Are You Sure to DELETE!')" class="btn btn-sm btn-danger"><i
+                                class="fas fa-trash"></i></button>
+                    </form>
                 </td>
             </tr>
             @endforeach

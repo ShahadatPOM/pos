@@ -6,55 +6,48 @@
             <div class="col-lg-10 offset-lg-1">
                 <div class="card mt-3">
                     <div class="card-header">
-                        <h4>Add Food</h4>
+                        <h4>Edit Food</h4>
                         <small><span style="color: red">*</span>Indicates Required Field</small>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body p-0">
                         <div class="col-12">
-                            <form action="{{ route('food.store') }}" method="post" enctype="multipart/form-data" >
+                            <form action="{{ route('food.update', $food->id) }}" method="post" enctype="multipart/form-data" >
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label>Category</label>
                                         <select class="form-control" name="fkcategory_id">
-                                            <option selected disabled>Select Category</option>
+                                            <option disabled>Select Category</option>
                                             @foreach($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->categoryName }}</option>                                                
+                                            <option @if($food->fkcategory_id == $category->id) selected @endif value="{{ $category->id }}">{{ $category->categoryName }}</option>                                                
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Food Name</label>
-                                        <input type="text" class="form-control" name="foodName" placeholder="Food Name">
+                                        <input type="text" class="form-control" value="{{ $food->foodName }}" name="foodName" placeholder="Food Name">
                                         @error('foodName')
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Component</label>
-                                        <input type="text" class="form-control" name="component" placeholder="Add Component">
-                                        @error('component')
-                                        <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label>Notes</label>
-                                        <input type="text" class="form-control" name="notes" placeholder="Add notes">
+                                        <input type="text" class="form-control" value="{{ $food->notes }}" name="notes" placeholder="Add notes">
                                         @error('notes')
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <input type="text" class="form-control" name="description" placeholder="Add description">
+                                        <input type="text" class="form-control" value="{{ $food->Description }}" name="description" placeholder="Add description">
                                         @error('description')
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="form-group">
                                         <label>Vat</label>
-                                        <input type="number" class="form-control" name="vat" placeholder="Add vat">
+                                        <input type="number" class="form-control" value="{{ $food->vat }}" name="vat" placeholder="Add vat">
                                         @error('vat')
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
@@ -64,8 +57,8 @@
                                         <label>Status</label>
                                         <select class="form-control" name="status">
                                             <option selected disabled>Select Status</option>
-                                            <option value="1">Active</option>
-                                            <option value="0">Inactive</option>
+                                            <option @if($food->status == 1) selected @endif value="1">Active</option>
+                                            <option @if($food->status == 0) selected @endif value="0">Inactive</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -80,8 +73,8 @@
                                         @enderror
                                     </div>
                                     <div>
-                                        <button type="submit" class="btn btn-md btn-primary">Submit</button>
-                                        <a href="#" class="btn btn-md btn-info">Back</a>
+                                        <button type="submit" class="btn btn-md btn-primary">Update</button>
+                                        <a href="{{ route('food.index') }}" class="btn btn-md btn-info">Back</a>
                                     </div>
                                 </div>
                             </form>

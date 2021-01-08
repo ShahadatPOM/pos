@@ -7,7 +7,7 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a style="color: #fff" href="#" class="nav-link">Home</a>
+                    <a style="color: #fff" href="{{ url('dashboard') }}" class="nav-link">Home</a>
                 </li>
             </ul>
            

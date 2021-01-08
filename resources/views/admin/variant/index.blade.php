@@ -1,45 +1,39 @@
 @extends('layouts.admin.master')
 @section('master.content')
 <div class="container">
-    <h2>Foods</h2>
+    <h2>Food Variants</h2>
     <hr>
-    <a href="{{ route('food.create') }}" class="btn btn-info ml-3">Add New</a>
+    <a href="{{ route('variant.create') }}" class="btn btn-info ml-3">Add New</a>
     <br><br>
 
     <table class="table table-bordered table-striped" id="food_datatable">
         <thead>
             <tr>
                 <th class="text-center" width="5%">ID</th>
-                <th class="text-center" width="15%">Image</th>
-                <th class="text-center" width="15%">Category</th>
                 <th class="text-center" width="15%">Food</th>
-                <th class="text-center" width="25%">Vat</th>
+                <th class="text-center" width="15%">Variant</th>
+                <th class="text-center" width="25%">Price</th>
                 <th class="text-center" width="15%">Status</th>
                 <th class="text-center" width="10%">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($foods as $food)
+            @foreach($variants as $variant)
             <tr>
-                <td>{{ $food->id }}</td>
+                <td>{{ $variant->id }}</td>                
+                <td>{{ $variant->food->foodName }}</td>
+                <td>{{ $variant->variantName }}</td>
+                <td>{{ $variant->price }}<small>tk</small></td>              
                 <td>
-                    <img class=" img-fluid" style="width: 50px" src="{{ asset('food/'. $food->food_image) }}" alt="Food image">
-                    {{--  <img style="width: 50px" src="{{ url('public/food', $food->food_image) }}" alt="Food image">  --}}
-                </td>
-                <td>{{ $food->category->categoryName }}</td>
-                <td>{{ $food->foodName }}</td>
-                <td>{{ $food->vat }}%</td>
-              
-                <td>
-                    @if($food->status == 1)
+                    @if($variant->status == 1)
                     <span class="badge badge-warning">Active</span>
                     @else
                     <span class="badge badge-warning">Inactive</span>
                     @endif
                 </td>
                 <td class="text-center">
-                    <a href="{{ route('food.edit', $food->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>
-                    <form action="{{ route('food.delete', $food->id) }}" method="post" style="display: inline-block">
+                    <a href="{{ route('variant.edit', $variant->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>
+                    <form action="{{ route('variant.delete', $variant->id) }}" method="post" style="display: inline-block">
                         @csrf
                         <button onclick="alert('Are You Sure to DELETE!')" class="btn btn-sm btn-danger"><i
                                 class="fas fa-trash"></i></button>

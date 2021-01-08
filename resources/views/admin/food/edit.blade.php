@@ -54,7 +54,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Food Status</label>
+                                        <label>Status</label>
                                         <select class="form-control" name="status">
                                             <option selected disabled>Select Status</option>
                                             <option @if($food->status == 1) selected @endif value="1">Active</option>
@@ -62,7 +62,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Upload Image</label>
+                                        <label>Food Image</label>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="food_image">
                                        

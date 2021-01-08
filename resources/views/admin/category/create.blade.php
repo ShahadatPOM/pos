@@ -22,7 +22,7 @@
                                 </div>
             
                                 <div class="form-group">
-                                    <label>Image</label>
+                                    <label>Category Image</label>
                                     <div class="col-sm-12">
                                         <input type="file" class="form-control" name="cat_image">
                                     </div>

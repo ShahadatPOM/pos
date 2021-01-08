@@ -30,3 +30,13 @@ Route::group(['prefix' => 'food', 'as' => 'food.'], function() {
     Route::post('update/{id}', 'FoodController@update')->name('update');
     Route::post('delete/{id}', 'FoodController@delete')->name('delete');
 });
+
+// Variants
+Route::group(['prefix' => 'variant', 'as' => 'variant.'], function() {
+    Route::get('index', 'VariantController@index')->name('index');
+    Route::get('create', 'VariantController@create')->name('create');
+    Route::post('store', 'VariantController@store')->name('store');
+    Route::get('edit/{id}', 'VariantController@edit')->name('edit');
+    Route::post('update/{id}', 'VariantController@update')->name('update');
+    Route::post('delete/{id}', 'VariantController@delete')->name('delete');
+});

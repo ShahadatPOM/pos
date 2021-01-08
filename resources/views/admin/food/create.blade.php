@@ -61,7 +61,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Your Country</label>
+                                        <label>Status</label>
                                         <select class="form-control" name="status">
                                             <option selected disabled>Select Status</option>
                                             <option value="1">Active</option>
@@ -69,7 +69,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label>Upload Manuscript</label>
+                                        <label>Food Image</label>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="food_image">
                                        

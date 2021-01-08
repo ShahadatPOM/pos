@@ -40,3 +40,8 @@ Route::group(['prefix' => 'variant', 'as' => 'variant.'], function() {
     Route::post('update/{id}', 'VariantController@update')->name('update');
     Route::post('delete/{id}', 'VariantController@delete')->name('delete');
 });
+
+// Orders
+Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
+    Route::get('orderPage', 'OrderController@orderPage')->name('orderPage');
+});

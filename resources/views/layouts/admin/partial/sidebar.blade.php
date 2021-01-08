@@ -33,7 +33,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.orderPage') }}" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
                                 <p>Pos Invoice</p>
                             </a>

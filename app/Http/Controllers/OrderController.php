@@ -59,6 +59,14 @@ class OrderController extends Controller
     }
 
     public function selectedFoods(Request $request){
-        dd($request->all());
+            // dd(array_keys($request->foodId));
+            $foods = Food::whereIn('id', $request->foodId)->get();
+            $quantities = array_intersect_key($request->quantity, $request->foodId);
+            foreach($foods as $key=>$food){
+                $fq = $quantities[$key];
+                $price = $fq*$food->vat;
+                dd($price);
+                
+            }
     }
 }

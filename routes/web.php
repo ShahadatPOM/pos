@@ -34,6 +34,7 @@ Route::group(['prefix' => 'food', 'as' => 'food.'], function() {
     Route::get('category/foodPage/{id}', 'OrderController@foodPage')->name('foodPage');
     Route::get('food/search/{text}', 'OrderController@foodSearch')->name('food-search');
     Route::post('category/food/all', 'OrderController@allFood')->name('allFoods');
+    Route::post('selectedFoods', 'OrderController@selectedFoods')->name('selectedFoods');
 });
 
 // Variants

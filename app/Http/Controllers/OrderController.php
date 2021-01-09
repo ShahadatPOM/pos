@@ -57,4 +57,8 @@ class OrderController extends Controller
 
         return view('admin.order.foodDetail-ajax', compact('foods'));
     }
+
+    public function selectedFoods(Request $request){
+        dd($request->all());
+    }
 }

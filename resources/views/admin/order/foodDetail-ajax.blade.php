@@ -27,13 +27,27 @@ div.desc {
 </style>
 </head>
 <body>
+    <form action="{{ route('food.selectedFoods') }}" method="post">
+        @csrf
     @foreach($foods as $food)
     <div class="gallery">
-        <a target="_blank" href="#">
-          <img src="{{ asset('food/'.$food->food_image) }}" class="img-fluid" alt="Food Image">
+        <a class="foodCheck" target="" href="#">
+            <input class="foodId" type="hidden" name="foodId[]" value="{{ $food->id }}">
+            <input type="number" name="quantity[]" placeholder="quantity">
+          <img  src="{{ asset('food/'.$food->food_image) }}" class="img-fluid" alt="Food Image">
         </a>
-        <div class="desc">{{ $food->foodName }}</div>
+        <div style="text-align: center; padding-top:2px">{{ $food->foodName }}</div>
+        <div class="" style="text-align: center; padding-top:2px">Price: {{ $food->vat }}tk</div>
       </div>
       @endforeach
+      <button type="submit" value="Submit">Submit</button>
+    </form>
+
 </body>
 </html>
+
+<script>
+   
+  </script>
+
+

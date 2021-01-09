@@ -29,6 +29,11 @@ Route::group(['prefix' => 'food', 'as' => 'food.'], function() {
     Route::get('edit/{id}', 'FoodController@edit')->name('edit');
     Route::post('update/{id}', 'FoodController@update')->name('update');
     Route::post('delete/{id}', 'FoodController@delete')->name('delete');
+
+    // food search
+    Route::get('category/foodPage/{id}', 'OrderController@foodPage')->name('foodPage');
+    Route::get('food/search/{text}', 'OrderController@foodSearch')->name('food-search');
+    Route::post('category/food/all', 'OrderController@allFood')->name('allFoods');
 });
 
 // Variants

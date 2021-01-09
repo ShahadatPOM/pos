@@ -50,4 +50,8 @@ Route::group(['prefix' => 'variant', 'as' => 'variant.'], function() {
 // Orders
 Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
     Route::get('orderPage', 'OrderController@orderPage')->name('orderPage');
+    Route::get('orderList', 'OrderController@orderList')->name('list');
+    Route::get('order/edit/{id}', 'OrderController@orderEdit')->name('edit');
+    Route::post('order/update/{id}', 'OrderController@orderUpdate')->name('update');
+    Route::post('order/delete/{id}', 'OrderController@orderDelete')->name('delete');
 });

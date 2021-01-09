@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Food;
+use App\Order;
 use App\Category;
+use App\OrderItem;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -62,11 +64,31 @@ class OrderController extends Controller
             // dd(array_keys($request->foodId));
             $foods = Food::whereIn('id', $request->foodId)->get();
             $quantities = array_intersect_key($request->quantity, $request->foodId);
+            $order = new Order();
+            $digits = 3;
+            
+            $order->orderToken = rand(pow(10, $digits-1), pow(10, $digits)-1);
+            $order->save();
             foreach($foods as $key=>$food){
-                $fq = $quantities[$key];
-                $price = $fq*$food->vat;
-                dd($price);
-                
+                $orderItem = new OrderItem();
+                $orderItem->fkorderId = $order->id;
+                $orderItem->itemPrice = $food->vat;
+                $orderItem->quantity = $quantities[$key];
+                $orderItem->total = $quantities[$key]*$food->vat;
+                $orderItem->save();
+
+                // $fq = $quantities[$key];
+                // $price = $fq*$food->vat;
+                // dd($price);
             }
+            $orderTotal = OrderItem::where('fkorderId', $order->id)->sum('total');
+            $order->orderTotal = $orderTotal;
+            $order->save();
+            return back();
+    }
+
+    public function orderList(){ 
+        $orders = Order::all();
+        return view('admin.order.index', compact('orders'));
     }
 }

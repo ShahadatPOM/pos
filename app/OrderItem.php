@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class OrderItem extends Model
 {
     protected $fillable = [
-        'orderToken', 'orderTotal'
+        'fkorderId', 'itemPrice', 'quantity', 'total'
     ];
 }

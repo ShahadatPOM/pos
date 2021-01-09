@@ -33,7 +33,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.orderPage') }}" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
                                 <p>Pos Invoice</p>
                             </a>
@@ -147,13 +147,7 @@
                                         <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                         <p>Food Varient</p>
                                     </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                        <p>Food Availability</p>
-                                    </a>
-                                </li>
+                                </li>                            
                             </ul>
                         </li>
                         <li class="nav-item">

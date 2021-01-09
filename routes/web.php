@@ -55,3 +55,8 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
     Route::post('order/update/{id}', 'OrderController@orderUpdate')->name('update');
     Route::post('order/delete/{id}', 'OrderController@orderDelete')->name('delete');
 });
+
+//Cart
+Route::post('food/add-to-cart', 'OrderController@addToCart')->name('add-to-cart');
+Route::post('cart/item/remove', 'OrderController@cartItemRemove')->name('cart.itemRemove');
+Route::post('cart/item/quantity/update', 'OrderController@itemQuantityUpdate')->name('item.quantityUpdate');

@@ -7,6 +7,8 @@ use App\Order;
 use App\Category;
 use App\OrderItem;
 use Illuminate\Http\Request;
+use Darryldecode\Cart\Cart;
+use Session;
 
 class OrderController extends Controller
 {
@@ -90,5 +92,37 @@ class OrderController extends Controller
     public function orderList(){ 
         $orders = Order::all();
         return view('admin.order.index', compact('orders'));
+    }
+
+    public function addToCart(Request $request){
+        $food = Food::findOrfail($request->id);
+            
+            if(!empty($request->quantity)){
+                $quantity = $request->quantity;
+            }else{
+                $quantity = 1;
+            }
+
+           $cart= \Cart::add([
+                'id' => $sku->skuId,
+                'name' => $sku->product->productName,
+                'price' => $price,
+                'quantity' => $quantity,
+                'attributes' => [
+                    'skuImage' => $skuimg,
+                    'variations' => $variations,
+                    'productID' => $sku->product->productId
+                ]
+            ]);
+            return response()->json(array("cart"=>\Cart::getContent(),"total"=>number_format(\Cart::getSubTotal())));
+    
+    }
+
+    public function cartItemRemove(){
+
+    }
+
+    public function itemQuantityUpdate(){
+
     }
 }

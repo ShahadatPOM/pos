@@ -30,6 +30,8 @@ div.desc {
     <form action="{{ route('food.selectedFoods') }}" method="post">
         @csrf
     @foreach($foods as $food)
+    
+    
     <div class="gallery">
         <a class="foodCheck" target="" href="#">
             <input class="foodId" type="hidden" name="foodId[]" value="{{ $food->id }}">
@@ -38,7 +40,10 @@ div.desc {
         </a>
         <div style="text-align: center; padding-top:2px">{{ $food->foodName }}</div>
         <div class="" style="text-align: center; padding-top:2px">Price: {{ $food->vat }}tk</div>
-      </div>
+        <a href="#" onclick="addToCart({{$food->id}})" title="Add to Cart"  class="btn btn-primary"><i class="fa fa-shopping-basket"></i></a>
+      
+    </div>
+
       @endforeach
       <button type="submit" value="Submit">Submit</button>
     </form>

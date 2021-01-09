@@ -17,9 +17,6 @@ class OrderController extends Controller
         return view('admin.order.orderPage', compact('categories'));
     }
 
-    public function orderStore(Request $request){
-        
-    }
 
     public function foodPage($id, $text=false)
     {
@@ -62,31 +59,51 @@ class OrderController extends Controller
         return view('admin.order.foodDetail-ajax', compact('foods'));
     }
 
-    public function selectedFoods(Request $request){
-            // dd(array_keys($request->foodId));
-            $foods = Food::whereIn('id', $request->foodId)->get();
-            $quantities = array_intersect_key($request->quantity, $request->foodId);
+    // public function selectedFoods(Request $request){
+    //         // dd(array_keys($request->foodId));
+    //         $foods = Food::whereIn('id', $request->foodId)->get();
+    //         $quantities = array_intersect_key($request->quantity, $request->foodId);
+    //         $order = new Order();
+    //         $digits = 3;
+            
+    //         $order->orderToken = rand(pow(10, $digits-1), pow(10, $digits)-1);
+    //         $order->save();
+    //         foreach($foods as $key=>$food){
+    //             $orderItem = new OrderItem();
+    //             $orderItem->fkorderId = $order->id;
+    //             $orderItem->itemPrice = $food->vat;
+    //             $orderItem->quantity = $quantities[$key];
+    //             $orderItem->total = $quantities[$key]*$food->vat;
+    //             $orderItem->save();
+
+    //             // $fq = $quantities[$key];
+    //             // $price = $fq*$food->vat;
+    //             // dd($price);
+    //         }
+    //         $orderTotal = OrderItem::where('fkorderId', $order->id)->sum('total');
+    //         $order->orderTotal = $orderTotal;
+    //         $order->save();
+    //         return back();
+    // }
+
+    public function orderStore(Request $request){
             $order = new Order();
             $digits = 3;
-            
             $order->orderToken = rand(pow(10, $digits-1), pow(10, $digits)-1);
+            $order->orderTotal = \Cart::getSubTotal();
             $order->save();
-            foreach($foods as $key=>$food){
-                $orderItem = new OrderItem();
+        foreach (\Cart::getContent() as $cartData) {
+            $q = $cartData['quantity'];
+            $orderItem = new OrderItem();
                 $orderItem->fkorderId = $order->id;
-                $orderItem->itemPrice = $food->vat;
-                $orderItem->quantity = $quantities[$key];
-                $orderItem->total = $quantities[$key]*$food->vat;
+                $orderItem->itemPrice = $cartData->price;
+                $orderItem->quantity = $cartData->quantity;
+                $orderItem->total = $cartData->price*$cartData->quantity;
                 $orderItem->save();
-
-                // $fq = $quantities[$key];
-                // $price = $fq*$food->vat;
-                // dd($price);
-            }
-            $orderTotal = OrderItem::where('fkorderId', $order->id)->sum('total');
-            $order->orderTotal = $orderTotal;
-            $order->save();
-            return back();
+        }
+        Session::flash('success', 'order placed successfully');
+        \Cart::clear();
+        return back();
     }
 
     public function orderList(){ 
@@ -95,8 +112,9 @@ class OrderController extends Controller
     }
 
     public function addToCart(Request $request){
-        $food = Food::findOrfail($request->id);
-            
+        $foodId = $request->foodId;
+        $food = Food::where('id', $foodId)->first();
+        
             if(!empty($request->quantity)){
                 $quantity = $request->quantity;
             }else{
@@ -104,25 +122,30 @@ class OrderController extends Controller
             }
 
            $cart= \Cart::add([
-                'id' => $sku->skuId,
-                'name' => $sku->product->productName,
-                'price' => $price,
+                'id' => $foodId,
+                'name' => $food->foodName,
+                'price' => $food->vat,
                 'quantity' => $quantity,
                 'attributes' => [
-                    'skuImage' => $skuimg,
-                    'variations' => $variations,
-                    'productID' => $sku->product->productId
+                    'foodImage' => $food->food_image,
                 ]
             ]);
-            return response()->json(array("cart"=>\Cart::getContent(),"total"=>number_format(\Cart::getSubTotal())));
+            return response()->json();
     
     }
 
-    public function cartItemRemove(){
-
+    public function cartItemRemove(Request $request){
+        $foodId = $request->foodId;
+        \Cart::remove($foodId);
+        return response()->json();
     }
 
-    public function itemQuantityUpdate(){
+    // public function itemQuantityUpdate(Request $cartData){
 
-    }
+    //     for ($x = 0; $x < count($cartData->rowID); $x++) {
+    //                $item = \Cart::get($cartData->rowID[$x]);
+    //             }
+    //                 session()->flash('success','Cart updated.');
+    //             return response()->json();
+    //         }
 }

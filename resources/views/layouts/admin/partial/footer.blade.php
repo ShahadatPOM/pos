@@ -23,156 +23,56 @@
     @endif
 
     function addToCart(id){
-        // get checked or selected variations
-        if($("#sizepic").find("li.active").length >= 0 && $("#colors").find("li").length>0){
-            if($("#colors").find("li.active").length <=0){
-                var skuId = 'please select a variation';
-                alert(skuId);
-            }
-            if($("#sizepic").find("li").length > 0 && $("#colors").find("li.active").length>0){
-                if ($('#colors li.active').attr("value") !== undefined){
-                    var skuId = $('#colors li.active').attr("value");
-                }
-            }
-        }
-        if($("#sizepic").find("li.active").length >= 0 && $("#colors").find("li").length<=0){
-            if ($('#sizepic li.active').attr("value") !== undefined){
-                var skuId = $('#sizepic li.active').attr("value");
-            }
-        }
-        if($("#colorpic").find("li.active").length >= 0 && $("#sizes").find("li").length>0){
-            if($("#sizes").find("li.active").length <=0){
-                var skuId = 'please select a variation';
-                alert(skuId);
-            }
-            if($("#colorpic").find("li").length > 0 && $("#sizes").find("li.active").length>0){
-                if ($('#sizes li.active').attr("value") !== undefined){
-                    var skuId = $('#sizes li.active').attr("value");
-                }
-            }
-        }
-        if($("#colorpic").find("li.active").length >= 0 && $("#sizes").find("li").length<=0){
-            if ($('#colorpic li.active').attr("value") !== undefined){
-                var skuId = $('#colorpic li.active').attr("value");
-            }
-        }
         var quantity = $('#qty').val();
-        var productId = id;
+        var foodId = id;
         $.ajax({
             url: "{{route('add-to-cart')}}",
             method: 'POST',
             data:{
                 _token: "{{ csrf_token() }}",
-                productId: productId,
-                skuId: skuId,
+                foodId: foodId,
                 quantity: quantity,
             },
             success: function (data){
                 toastr.success('Item Added To  Cart Successfully');
-                // console.log(data.total);
-                var getTotalQuantity=0;
-                var getSubTotal=0;
-                var cartItems=""
-                $.each(data.cart,(index,row)=>
-                {
-                    getTotalQuantity+=parseFloat(row.quantity)
-                    getSubTotal+=parseFloat(row.price)
-                    cartItems+=`<li>
-                                        <a href="#" onclick="removeItem(${row.id})" class="close-cart"><i class="fa fa-times-circle"></i></a>
-                                        <div class="media">
-                                        ${row.attributes.skuImage!= "demo.img" ? `<a href="{{url('product/details/')}}/${row.id}" class="pull-left"> <img alt="Beaox" src="{{url('admin/public/productImage/')}}/${row.attributes.skuImage}"></a>` : `<a class="pull-left"> <img alt="Beaox" src="{{url('public/frontend/images/1.jpg')}}"></a>`}
-                                        <div class="media-body">
-                                                <span><a href="{{url('product/details/')}}/${row.id}">${row.name}</a></span>
-                                                <p class="cart-price">Price: ${row.price}</p>
-                                                <div class="product-qty">
-                                                        <p>Quantity: <b>${ row.quantity }</b></p>
-                                                </div>
-                                        </div>
-                                    </li>`
-                })
-                $('#cart').html('')
-                $('#cart').append(`
-                        <a href="javascript:void(0)">
-                            <span class="cart-icon-main"></span>
-                            <div class="cart-text">
-                                <div id="item" class="my-cart">${getTotalQuantity} Items</div>
-                            </div>
-                        </a>
-                        <div class="cart-dropdown header-link-dropdown">
-                            <ul id="test" class="cart-list link-dropdown-list">
-                                ${cartItems}
-                                ${getSubTotal != 0 ? `<p id="cartTotal" class="cart-sub-totle"> <span class="pull-left" style="font-size: 14px; font-weight: bold; color: #000000">Cart Subtotal</span> <span id="cartSubTotal" class="pull-right"><strong class="price-box">${data.total}</strong></span> </p>
-                                <div class="clearfix"></div>
-                                <div id="cartBtn" class="mt-20">
-                                <a href="#" class="btn-color btn"><i class="fa fa-shopping-cart"></i>Cart</a>
-                    <a href="#" class="btn-color btn right-side"><i class="fa fa-share"></i>Checkout</a>
-                    </div>` :`<p style="font-weight: bold; font-size: 14px; text-align: center">Cart Is Empty</p>` }
-                                </ul>`
-                )
+                    $("#fullCart").load(location.href + " #fullCart");
+                    $("#cartSubTotal").load(location.href + " #cartSubTotal");
+                    $("#Confirmbtn").load(location.href + " #Confirmbtn");
+                    $("#empty").load(location.href + " #empty");
+                    $("#totalQ").load(location.href + " #totalQ");
+                    $("#cartH").load(location.href + " #cartH");
+                    $("#orderP").load(location.href + " #orderP");
+                
             },
             error:function (data)
             {
-                toastr.warning('Stock Not available');
-            }
+                toastr.warning('problem');
+            } 
         })
     }
+    
+
     function removeItem(id){
-        var skuId = id;
+        alert(id);
+        var foodId = id;
         $.ajax({
             url: "{{route('cart.itemRemove')}}",
             method: 'POST',
             data:{
                 _token: "{{ csrf_token() }}",
-                skuId: skuId,
+                foodId: foodId,
             },
             success: function (data){
                 toastr.success('Item removed From Cart Successfully');
-                var getTotalQuantity=0;
-                var getSubTotal=0;
-                var cartItems=""
-                $("#cartTable").load(location.href + " #cartTable");
-                $.each(data.cart,(index,row)=>
-                {
-                    getTotalQuantity+=parseFloat(row.quantity)
-                    getSubTotal+=parseFloat(row.price)
-                    cartItems+=`<li>
-                                        <a href="#" onclick="removeItem(${row.id})" class="close-cart"><i class="fa fa-times-circle"></i></a>
-                                        <div class="media">
-                                        ${row.attributes.skuImage!= "demo.img" ? `<a class="pull-left"> <img alt="Beaox" src="{{url('admin/public/productImage/')}}/${row.attributes.skuImage}"></a>` : `<a class="pull-left"> <img alt="Beaox" src="{{url('public/frontend/images/1.jpg')}}"></a>`}
-                                        <div class="media-body">
-                                                <span><a href="javascript:void(0)">${row.name}</a></span>
-                                                <p class="cart-price">Price: ${row.price}</p>
-                                                <div class="product-qty">
-                                                   <p>Quantity: <b>${ row.quantity }</b></p>
-                                                </div>
-                                        </div>
-                                    </li>`
-                })
-                $('#cart').html('')
-                $('#cart').append(`
-                        <a href="javascript:void(0)">
-                            <span class="cart-icon-main"></span>
-                            <div class="cart-text">
-                                <div id="item" class="my-cart">${getTotalQuantity} Items</div>
-                            </div>
-                        </a>
-                        <div class="cart-dropdown header-link-dropdown">
-                            <ul id="test" class="cart-list link-dropdown-list">
-                                ${cartItems}
-                                ${getSubTotal != 0 ? `<p id="cartTotal" class="cart-sub-totle"> <span class="pull-left" style="font-size: 14px; font-weight: bold; color: #000000">Cart Subtotal</span> <span id="cartSubTotal" class="pull-right"><strong class="price-box">${data.total}</strong></span> </p>
-                                <div class="clearfix"></div>
-                                <div id="cartBtn" class="mt-20">
-                                <a href="#" class="btn-color btn"><i class="fa fa-shopping-cart"></i>Cart</a>
-                                @auth
-                    <a href="#" class="btn-color btn right-side"><i class="fa fa-share"></i>Checkout</a>
-                                @endauth
-                    @guest
-                    <a href="{{ route('login') }}" class="btn-color btn right-side"><i class="fa fa-share"></i>Checkout</a>
-                                @endguest
-                    </div>` :`<p style="font-weight: bold; font-size: 14px; text-align: center">Cart Is Empty</p>` }
-                                </ul>`
-                )
+                $("#fullCart").load(location.href + " #fullCart");
+                $("#cartSubTotal").load(location.href + " #cartSubTotal");
+                $("#Confirmbtn").load(location.href + " #Confirmbtn");
+                $("#empty").load(location.href + " #empty");
+                $("#totalQ").load(location.href + " #totalQ");
+                $("#cartH").load(location.href + " #cartH");
+                $("#orderP").load(location.href + " #orderP");
             },
         })
     }
+
 </script>

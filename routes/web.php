@@ -34,7 +34,7 @@ Route::group(['prefix' => 'food', 'as' => 'food.'], function() {
     Route::get('category/foodPage/{id}', 'OrderController@foodPage')->name('foodPage');
     Route::get('food/search/{text}', 'OrderController@foodSearch')->name('food-search');
     Route::post('category/food/all', 'OrderController@allFood')->name('allFoods');
-    Route::post('selectedFoods', 'OrderController@selectedFoods')->name('selectedFoods');
+    // Route::post('selectedFoods', 'OrderController@selectedFoods')->name('selectedFoods');
 });
 
 // Variants
@@ -51,6 +51,7 @@ Route::group(['prefix' => 'variant', 'as' => 'variant.'], function() {
 Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
     Route::get('orderPage', 'OrderController@orderPage')->name('orderPage');
     Route::get('orderList', 'OrderController@orderList')->name('list');
+    Route::get('orderStore', 'OrderController@orderStore')->name('store');
     Route::get('order/edit/{id}', 'OrderController@orderEdit')->name('edit');
     Route::post('order/update/{id}', 'OrderController@orderUpdate')->name('update');
     Route::post('order/delete/{id}', 'OrderController@orderDelete')->name('delete');

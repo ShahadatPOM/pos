@@ -4,13 +4,20 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\User;
+use App\Order;
+use App\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view('admin.dashboard');
+        $today = date('Y-m-d');
+        $completeOrder = Order::where('status', 'complete')->get();
+        $pendingOrder = Order::where('status', 'pending')->get();
+        $cancelOrder = Order::where('status', 'cancel')->get();
+        $todaysBooking = Reservation::where('date', $today)->get();
+        return view('admin.dashboard', compact('completeOrder', 'pendingOrder', 'cancelOrder', 'todaysBooking'));
     }
 
     public function allUsers(){

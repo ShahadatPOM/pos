@@ -78,6 +78,21 @@ class OrderController extends Controller
         return view('admin.order.index', compact('orders'));
     }
 
+    public function pendingorderList(){ 
+        $orders = Order::where('status', 'pending')->get();
+        return view('admin.order.pending', compact('orders'));
+    }
+
+    public function completeorderList(){ 
+        $orders = Order::where('status', 'complete')->get();
+        return view('admin.order.complete', compact('orders'));
+    }
+
+    public function cancelorderList(){ 
+        $orders = Order::where('status', 'cancel')->get();
+        return view('admin.order.cancel', compact('orders'));
+    }
+
     public function addToCart(Request $request){
         $foodId = $request->foodId;
         $food = Food::where('id', $foodId)->first();
@@ -183,6 +198,8 @@ class OrderController extends Controller
         $orderItems = OrderItem::where('fkorderId', $id)->get();
         return view('admin.order.detail', compact('orderItems'));
     }
+
+    
 
     // public function itemQuantityUpdate(Request $cartData){
 

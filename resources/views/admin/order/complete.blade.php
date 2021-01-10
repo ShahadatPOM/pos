@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 @section('master.content')
 <div class="container">
-    <h2>All Orders</h2>
+    <h2>Complete Orders</h2>
     <hr>
     {{--  <a href="{{ route('category.create') }}" class="btn btn-info ml-3">Add New</a>  --}}
     <br><br>

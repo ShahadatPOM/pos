@@ -46,19 +46,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.pending.list') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Pending Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.complete.list') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Complete Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.cancel.list') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Cancel Order</p>
                             </a>

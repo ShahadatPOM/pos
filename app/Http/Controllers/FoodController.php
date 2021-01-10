@@ -8,6 +8,7 @@ use App\Food;
 use App\Category;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Session;
 
 class FoodController extends Controller
 {
@@ -49,7 +50,7 @@ class FoodController extends Controller
             $food->food_image = $uniqueImageName;
             $food->save();
         }
-        Alert::toast('food added successfully', 'success');
+        Session::flash('success', 'food added successfully');
         return back();
     }
 
@@ -86,7 +87,7 @@ class FoodController extends Controller
             $food->food_image = $uniqueImageName;
             $food->save();
         }
-        Alert::toast('food updated successfully', 'success');
+        Session::flash('success', 'food updated successfully');
         return back();
     }
 
@@ -94,7 +95,7 @@ class FoodController extends Controller
     public function delete(Request $request, $id){
         $food = Food::where('id', $id)->first();
         $food->delete();
-        Alert::toast('food deleted successfully', 'success');
+        Session::flash('success', 'food deleted successfully');
         return back();
     }
 }

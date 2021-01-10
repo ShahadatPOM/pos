@@ -76,7 +76,7 @@
                                     <li><a href="#reservation">Reservaion</a></li>
                                     <li><a href="#footer">Contact us</a></li>
                                     <li><a href="{{ route('login') }}">Login</a></li>
-                                    <li><a href="{{ route('register') }}">Register</a></li>
+                                    <!-- <li><a href="{{ route('register') }}">Register</a></li> -->
                                 </ul>
                             </div>
                             <!-- end nav-collapse -->

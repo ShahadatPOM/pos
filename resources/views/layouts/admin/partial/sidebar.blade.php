@@ -195,6 +195,7 @@
 
                 {{--  Default  --}}
                 <li class="nav-header">Default</li>
+                @if(Auth::user()->user_type_id == 0)
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
                         <i style="color: #E75B1E"  class="far fa-user"></i>
@@ -216,6 +217,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('user.profile', Auth::id()) }}" class="nav-link">
                         <i style="color: #E75B1E" class="far fa-user-circle nav-icon"></i>

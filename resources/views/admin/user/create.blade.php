@@ -17,7 +17,7 @@
                                 <div class="form-group">
                                     <label for="name">User Name</label>
                                     <div class="col-sm-12">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        <input id="name" type="text" placeholder="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <label for="name">Email</label>
                                     <div class="col-sm-12">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                        <input id="email" type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -44,7 +44,7 @@
                                 <div class="form-group">
                                     <label for="name">Password</label>
                                     <div class="col-sm-12">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        <input id="password" type="password" placeholder="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
@@ -57,7 +57,17 @@
                                 <div class="form-group">
                                     <label for="name">Confirm Password</label>
                                     <div class="col-sm-12">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                        <input id="password-confirm" placeholder="confirm password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">User Type</label>
+                                    <div class="col-sm-12">
+                                    <select name="user_type_id" class="form-control">
+                                    <option selected>Select user type</option>
+                                    <option value="1">Cashier</option>
+                                    <option value="2">Manager</option>
+                                    </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-offset-2 col-sm-10">

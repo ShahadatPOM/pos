@@ -75,15 +75,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('reservation.create') }}" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Add Booking</p>
+                                <p>Add Reservation</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('reservation.index') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                <p>Booking List</p>
+                                <p>Reservation List</p>
                             </a>
                         </li>
                     </ul>

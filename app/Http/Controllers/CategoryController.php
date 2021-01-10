@@ -7,7 +7,6 @@ use App\Category;
 use Image;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use Session;
 
 class CategoryController extends Controller
 {

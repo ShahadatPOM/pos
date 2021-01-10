@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="{{ url('dashboard') }}" class="brand-link">
         <img src="{{asset('front_temp/images/logo.png')}}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Management System</span>
@@ -11,11 +11,12 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="#" class="img-circle elevation-2"
+
+                <img src="{{ asset('profile/'. Auth::user()->image) }}" class="img-circle elevation-2"
                     alt="User Image">
             </div>
             <div class="info">
-                <a style="text-transform: capitalize;" href="{{ url('profile', Auth::id()) }}" class="d-block">@auth{{Auth::user()->name}}@endauth</a>
+                <a style="text-transform: capitalize;" href="{{ route('user.profile', Auth::id()) }}" class="d-block">@auth{{Auth::user()->name}}@endauth</a>
             </div>
         </div>
 
@@ -27,7 +28,7 @@
                     {{--  Order  --}}
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
-                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                          <i style="color: #E75B1E" class="fab fa-jedi-order"></i>
                         <p>Manage Order</p>
                         <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
@@ -35,37 +36,31 @@
                         <li class="nav-item">
                             <a href="{{ route('order.orderPage') }}" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Pos Invoice</p>
+                                <p>Take Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.list') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Order List</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.pending.list') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Pending Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.complete.list') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Complete Order</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('order.cancel.list') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Cancel Order</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                <p>Pos Setting</p>
                             </a>
                         </li>
                     </ul>
@@ -74,21 +69,44 @@
                 {{--  Reservation  --}}
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
-                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <i style="color: #E75B1E" class="fab fa-resolving"></i>
                         <p>Reservation</p>
                         <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('reservation.create') }}" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Reservation</p>
+                                <p>Add Reservation</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('reservation.index') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                <p>Add Booking</p>
+                                <p>Reservation List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                {{-- Category Management --}}
+                <li class="nav-item has-treeview ">
+                    <a href="#" class="nav-link">
+                      <i style="color: #E75B1E" class="fas fa-transgender-alt"></i>
+                        <p>Category Management</p>
+                        <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('category.create') }}" class="nav-link">
+                                <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
+                                <p>Add Category</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('category.index') }}" class="nav-link">
+                                <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
+                                <p>Category List</p>
                             </a>
                         </li>
                     </ul>
@@ -97,60 +115,32 @@
                 {{--  Food Management  --}}
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
-                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <i style="color: #E75B1E" class="fas fa-utensils"></i>
                         <p>Food Management</p>
                         <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
+                   
                     <ul class="nav nav-treeview">
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                        <li class="nav-item">
+                            <a href="{{ route('food.create') }}" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Manage Category</p>
-                                <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                                <p>Add Food</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('category.create') }}" class="nav-link">
-                                        <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                        <p>Add Category</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('category.index') }}" class="nav-link">
-                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                        <p>Category List</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('food.index') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                <p>Manage Food</p>
-                                <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
+                                <p>Food List</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('food.create') }}" class="nav-link">
-                                        <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                        <p>Add Food</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('food.index') }}" class="nav-link">
-                                        <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
-                                        <p>Food List</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
+                        </li>
+                                {{-- <li class="nav-item">
                                     <a href="{{ route('variant.index') }}" class="nav-link">
                                         <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                         <p>Food Varient</p>
                                     </a>
-                                </li>                            
-                            </ul>
-                        </li>
-                        <li class="nav-item">
+                                </li>                             --}}
+                         
+                        {{-- <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Manage Addons</p>
@@ -182,24 +172,18 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
                 {{--  Report  --}}
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
-                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <i  style="color: #E75B1E" class="far fa-clipboard"></i>
                         <p>Report</p>
                         <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
-                                <p>Stock Report</p>
-                            </a>
-                        </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
@@ -213,19 +197,19 @@
                 <li class="nav-header">Default</li>
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
-                        <i style="color: #E75B1E" class="fas fa-tags"></i>
+                        <i style="color: #E75B1E"  class="far fa-user"></i>
                         <p>User</p>
                         <i style="color: #E75B1E" class="right fas fa-angle-left"></i>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('user.create') }}" class="nav-link">
                                 <i style="color: #E75B1E" class="fas fa-plus nav-icon"></i>
                                 <p>Add User</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('all.user') }}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>User List</p>
                             </a>
@@ -233,7 +217,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('user.profile', Auth::id()) }}" class="nav-link">
                         <i style="color: #E75B1E" class="far fa-user-circle nav-icon"></i>
                         <p>Profile</p>
                     </a>

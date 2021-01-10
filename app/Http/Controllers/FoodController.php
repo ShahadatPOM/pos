@@ -8,6 +8,7 @@ use App\Food;
 use App\Category;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Session;
 
 class FoodController extends Controller
 {
@@ -34,10 +35,9 @@ class FoodController extends Controller
         $food = new Food();
         $food->foodName = $request->foodName;
         $food->fkcategory_id = $request->fkcategory_id;
-        $food->notes = $request->notes;
         $food->Description = $request->description;
         $food->status = $request->status;
-        $food->vat  = $request->vat;
+        $food->price  = $request->price;
         $food->save();
 
         if ($request->hasFile('food_image')) {
@@ -49,8 +49,9 @@ class FoodController extends Controller
             $food->food_image = $uniqueImageName;
             $food->save();
         }
-        Alert::toast('food added successfully', 'success');
-        return back();
+        Session::flash('success', 'food added successfully');
+        return redirect()->route('food.index');
+
     }
 
     public function edit($id)
@@ -63,7 +64,7 @@ class FoodController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'foodName' => 'required',
+            'foodName' => 'required|unique:food,$id',
             'fkcategory_id' => 'required',
             'status' => 'required',
         ]);
@@ -71,10 +72,9 @@ class FoodController extends Controller
         $food = Food::where('id', $id)->first();
         $food->foodName = $request->foodName;
         $food->fkcategory_id = $request->fkcategory_id;
-        $food->notes = $request->notes;
         $food->Description = $request->description;
         $food->status = $request->status;
-        $food->vat  = $request->vat;
+        $food->price  = $request->price;
         $food->save();
 
         if ($request->hasFile('food_image')) {
@@ -86,15 +86,15 @@ class FoodController extends Controller
             $food->food_image = $uniqueImageName;
             $food->save();
         }
-        Alert::toast('food updated successfully', 'success');
-        return back();
+        Session::flash('success', 'food updated successfully');
+        return redirect()->route('food.index');
     }
 
    
     public function delete(Request $request, $id){
         $food = Food::where('id', $id)->first();
         $food->delete();
-        Alert::toast('food deleted successfully', 'success');
+        Session::flash('success', 'food deleted successfully');
         return back();
     }
 }

@@ -17,14 +17,10 @@ class CreateFoodTable extends Migration
             $table->id();
             $table->string('foodName');
             $table->unsignedBigInteger('fkcategory_id');
-            $table->json('component')->nullable();
-            $table->string('notes')->nullable();
             $table->string('Description')->nullable();
             $table->string('food_image')->nullable();
-            $table->boolean('is_special')->nullable();
-            $table->string('cooking_time')->nullable();
-            $table->boolean('status');
-            $table->integer('vat')->nullable();
+            $table->integer('price')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

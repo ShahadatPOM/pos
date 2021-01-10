@@ -13,7 +13,8 @@
                 <th class="text-center" width="15%">Image</th>
                 <th class="text-center" width="15%">Category</th>
                 <th class="text-center" width="15%">Food</th>
-                <th class="text-center" width="25%">Vat</th>
+                <th class="text-center" width="25%">Price</th>
+                <th class="text-center" width="25%">Description</th>
                 <th class="text-center" width="15%">Status</th>
                 <th class="text-center" width="10%">Action</th>
             </tr>
@@ -28,7 +29,8 @@
                 </td>
                 <td>{{ $food->category->categoryName }}</td>
                 <td>{{ $food->foodName }}</td>
-                <td>{{ $food->vat }}%</td>
+                <td>{{ $food->price }}tk</td>
+                <td>{{ $food->Description }}</td>
               
                 <td>
                     @if($food->status == 1)

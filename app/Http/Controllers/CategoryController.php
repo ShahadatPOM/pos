@@ -35,7 +35,7 @@ public function store(Request $request){
         $category->cat_image = $uniqueImageName;
         $category->save();
     }
-    Alert::toast('category added successfully', 'success');
+    Session::flash('success', 'category added successfully');
     return redirect()->route('category.index');
 }
 
@@ -60,8 +60,7 @@ public function update(Request $request, $id){
         $category->cat_image = $uniqueImageName;
         $category->save();
     }
-    Alert::toast('category updated successfully', 'success');
-
+    Session::flash('success', 'category updated successfully');
     return redirect()->route('category.index');
 
 }
@@ -69,7 +68,7 @@ public function update(Request $request, $id){
     public function delete(Request $request, $id){
         $category = Category::where('id', $id)->first();
         $category->delete();
-        Alert::toast('category deleted successfully', 'success');
+        Session::flash('success', 'category deleted successfully');
         return back();
     }
 

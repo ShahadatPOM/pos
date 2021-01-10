@@ -32,20 +32,6 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Component</label>
-                                        <input type="text" class="form-control" name="component" placeholder="Add Component">
-                                        @error('component')
-                                        <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Notes</label>
-                                        <input type="text" class="form-control" name="notes" placeholder="Add notes">
-                                        @error('notes')
-                                        <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label>Description</label>
                                         <input type="text" class="form-control" name="description" placeholder="Add description">
                                         @error('description')
@@ -53,9 +39,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Vat</label>
-                                        <input type="number" class="form-control" name="vat" placeholder="Add vat">
-                                        @error('vat')
+                                        <label>Price</label>
+                                        <input type="number" class="form-control" name="price" placeholder="Add price">
+                                        @error('price')
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
                                     </div>

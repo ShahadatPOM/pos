@@ -1,7 +1,7 @@
 @extends('layouts.admin.master')
 @section('master.content')
 <div class="container">
-    <h2>Order List</h2>
+    <h2>Order Details</h2>
     <hr>
     {{--  <a href="{{ route('category.create') }}" class="btn btn-info ml-3">Add New</a>  --}}
     <br><br>
@@ -10,24 +10,25 @@
         <thead>
             <tr>
                 <th class="text-center" width="5%">ID</th>
-                <th class="text-center" width="15%">Order Token</th>
-                <th class="text-center" width="15%">Order Total</th>
-                <th class="text-center" width="15%">Status</th>
+                <th class="text-center" width="15%">Food Name</th>
+                <th class="text-center" width="15%">Price</th>
+                <th class="text-center" width="15%">Quantity</th>
+                <th class="text-center" width="15%">Total</th>
                 <th class="text-center" width="10%">Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($orders as $order)
+            @foreach($orderItems as $item)
             <tr>
-                <td>{{ $order->id }}</td>
-                <td>{{ $order->orderToken }}</td>
-                <td>{{ $order->orderTotal }}</td>
-                <td>{{ $order->status }}</td>
+                <td>{{ $item->id }}</td>
+                <td>{{ $item->itemName }}</td>
+                <td>{{ $item->itemPrice }}</td>
+                <td>{{ $item->quantity }}</td>
+                <td>{{ $item->total }}</td>
                 <td class="text-center">
-                    <a href="{{ route('order.edit', $order->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>
-                    <a href="{{ route('order.details', $order->id) }}" class="btn btn-sm btn-info" title="details"><i class="fa fa-eye"></i></a>
+                    <a href="{{ route('order.item.edit', $item->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>
 
-                    <form action="{{ route('order.delete', $order->id) }}" method="post"
+                    <form action="{{ route('order.item.delete', $item->id) }}" method="post"
                         style="display: inline-block">
                         @csrf
                         <button onclick="alert('Are You Sure to DELETE!')" class="btn btn-sm btn-danger"><i

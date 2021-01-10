@@ -57,9 +57,14 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
     Route::get('orderPage', 'OrderController@orderPage')->name('orderPage');
     Route::get('orderList', 'OrderController@orderList')->name('list');
     Route::get('orderStore', 'OrderController@orderStore')->name('store');
+    Route::get('order/detail/{id}', 'OrderController@orderDetails')->name('details');
     Route::get('order/edit/{id}', 'OrderController@orderEdit')->name('edit');
     Route::post('order/update/{id}', 'OrderController@orderUpdate')->name('update');
     Route::post('order/delete/{id}', 'OrderController@orderDelete')->name('delete');
+    // orderItem
+    Route::get('orderItem/edit/{id}', 'OrderController@orderItemEdit')->name('item.edit');
+    Route::post('orderItem/update/{id}', 'OrderController@orderItemUpdate')->name('item.update');
+    Route::post('orderItem/delete/{id}', 'OrderController@orderItemDelete')->name('item.delete');
 });
 
 //Cart

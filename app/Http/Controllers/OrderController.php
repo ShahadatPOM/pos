@@ -56,11 +56,13 @@ class OrderController extends Controller
             $digits = 3;
             $order->orderToken = rand(pow(10, $digits-1), pow(10, $digits)-1);
             $order->orderTotal = \Cart::getSubTotal();
+            $order->status = "pending";
             $order->save();
         foreach (\Cart::getContent() as $cartData) {
             $q = $cartData['quantity'];
             $orderItem = new OrderItem();
                 $orderItem->fkorderId = $order->id;
+                $orderItem->itemName = $cartData->name;
                 $orderItem->itemPrice = $cartData->price;
                 $orderItem->quantity = $cartData->quantity;
                 $orderItem->total = $cartData->price*$cartData->quantity;
@@ -103,6 +105,83 @@ class OrderController extends Controller
         $foodId = $request->foodId;
         \Cart::remove($foodId);
         return response()->json();
+    }
+
+    public function orderEdit($id)
+    {
+        $order = Order::where('id', $id)->first();
+        return view('admin.order.edit', compact('order'));
+    }
+
+    public function orderUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'orderTotal' => 'required',
+            'status' => 'required',
+        ]);
+
+        $order = Order::where('id', $id)->first();
+        $order->orderTotal = $request->orderTotal;
+        $order->status = $request->status;
+        $order->save();
+
+        Session::flash('success', 'order updated successfully');
+        return redirect()->route('order.list');
+    }
+
+
+    public function orderDelete(Request $request, $id){
+        $order = Order::where('id', $id)->first();
+        $order->delete();
+        Session::flash('success', 'order deleted successfully');
+        return redirect()->route('order.list');
+    }
+
+    public function orderItemEdit($id)
+    {
+        $orderItem = OrderItem::where('id', $id)->first();
+        return view('admin.orderItem.edit', compact('orderItem'));
+    }
+
+    public function orderItemUpdate(Request $request, $id)
+    {
+        $this->validate($request, [
+            'itemPrice' => 'required',
+            'quantity' => 'required',
+        ]);
+
+        $orderItem = OrderItem::where('id', $id)->first();
+        $orderId = $orderItem->fkorderId;
+        $orderItem->itemPrice = $request->itemPrice;
+        $orderItem->quantity = $request->quantity;
+        $orderItem->total = $request->itemPrice*$request->quantity;
+        $orderItem->save();
+
+        $total = OrderItem::where('fkorderId', $orderId)->sum('total');
+        $order = Order::where('id', $orderId)->first();
+        $order->orderTotal = $total;
+        $order->save();
+
+        Session::flash('success', 'order Item updated successfully');
+        return redirect()->route('order.list');
+    }
+
+
+    public function orderItemDelete(Request $request, $id){
+        $orderItem = OrderItem::where('id', $id)->first();
+        $orderId = $orderItem->fkorderId;
+        $orderItem->delete();
+        $total = OrderItem::where('fkorderId', $orderId)->sum('total');
+        $order = Order::where('id', $orderId)->first();
+        $order->orderTotal = $total;
+        $order->save();
+        Session::flash('success', 'order item deleted successfully');
+        return redirect()->route('order.list');
+    }
+
+    public function orderDetails($id){
+        $orderItems = OrderItem::where('fkorderId', $id)->get();
+        return view('admin.order.detail', compact('orderItems'));
     }
 
     // public function itemQuantityUpdate(Request $cartData){

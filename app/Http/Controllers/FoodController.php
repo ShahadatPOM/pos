@@ -35,7 +35,6 @@ class FoodController extends Controller
         $food = new Food();
         $food->foodName = $request->foodName;
         $food->fkcategory_id = $request->fkcategory_id;
-        $food->notes = $request->notes;
         $food->Description = $request->description;
         $food->status = $request->status;
         $food->price  = $request->price;
@@ -51,7 +50,8 @@ class FoodController extends Controller
             $food->save();
         }
         Session::flash('success', 'food added successfully');
-        return back();
+        return redirect()->route('food.index');
+
     }
 
     public function edit($id)
@@ -64,7 +64,7 @@ class FoodController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'foodName' => 'required',
+            'foodName' => 'required|unique:food,$id',
             'fkcategory_id' => 'required',
             'status' => 'required',
         ]);
@@ -72,7 +72,6 @@ class FoodController extends Controller
         $food = Food::where('id', $id)->first();
         $food->foodName = $request->foodName;
         $food->fkcategory_id = $request->fkcategory_id;
-        $food->notes = $request->notes;
         $food->Description = $request->description;
         $food->status = $request->status;
         $food->price  = $request->price;
@@ -88,7 +87,7 @@ class FoodController extends Controller
             $food->save();
         }
         Session::flash('success', 'food updated successfully');
-        return back();
+        return redirect()->route('food.index');
     }
 
    

@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('orderToken')->nullable();
             $table->integer('orderTotal')->nullable();
-            $table->boolean('status')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

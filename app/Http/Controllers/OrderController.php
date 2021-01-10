@@ -17,24 +17,16 @@ class OrderController extends Controller
         return view('admin.order.orderPage', compact('categories'));
     }
 
-
     public function foodPage($id, $text=false)
     {
             if($text == false) {
                 $categoriesid = $id;
                 $category = Category::findOrfail($categoriesid);
-
-                // $childCategories = Category::where('parent', $categoriesid)->get();
-
                 $foods = Food::where('fkcategory_id', $categoriesid)->where('status', 1)->get();
-
-                // foreach ($foods as $food) {
-                    
-                // }
                 return view('admin.order.orderPage', compact('categoriesid', 'category', 'foods'));
             }
 
-            if($text != false){               
+            if($text != false){
                 $foods = Food::where('foodName', 'Like', "%$text%")->pluck('id');
                 $food = Food::whereIn('id', $foods)->where('status', 'active')->get();
 
@@ -58,33 +50,6 @@ class OrderController extends Controller
 
         return view('admin.order.foodDetail-ajax', compact('foods'));
     }
-
-    // public function selectedFoods(Request $request){
-    //         // dd(array_keys($request->foodId));
-    //         $foods = Food::whereIn('id', $request->foodId)->get();
-    //         $quantities = array_intersect_key($request->quantity, $request->foodId);
-    //         $order = new Order();
-    //         $digits = 3;
-            
-    //         $order->orderToken = rand(pow(10, $digits-1), pow(10, $digits)-1);
-    //         $order->save();
-    //         foreach($foods as $key=>$food){
-    //             $orderItem = new OrderItem();
-    //             $orderItem->fkorderId = $order->id;
-    //             $orderItem->itemPrice = $food->vat;
-    //             $orderItem->quantity = $quantities[$key];
-    //             $orderItem->total = $quantities[$key]*$food->vat;
-    //             $orderItem->save();
-
-    //             // $fq = $quantities[$key];
-    //             // $price = $fq*$food->vat;
-    //             // dd($price);
-    //         }
-    //         $orderTotal = OrderItem::where('fkorderId', $order->id)->sum('total');
-    //         $order->orderTotal = $orderTotal;
-    //         $order->save();
-    //         return back();
-    // }
 
     public function orderStore(Request $request){
             $order = new Order();
@@ -124,7 +89,7 @@ class OrderController extends Controller
            $cart= \Cart::add([
                 'id' => $foodId,
                 'name' => $food->foodName,
-                'price' => $food->vat,
+                'price' => $food->price,
                 'quantity' => $quantity,
                 'attributes' => [
                     'foodImage' => $food->food_image,

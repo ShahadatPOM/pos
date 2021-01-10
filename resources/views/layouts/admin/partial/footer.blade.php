@@ -4,7 +4,7 @@
 
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2020 <a href="#">Rifat</a>.</strong> All rights
+    <strong>Designed & Developed By <a href="#">Rifat</a> &copy; 2021. </strong> All rights
     reserved.
 </footer>
 

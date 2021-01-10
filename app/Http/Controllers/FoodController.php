@@ -37,7 +37,7 @@ class FoodController extends Controller
         $food->notes = $request->notes;
         $food->Description = $request->description;
         $food->status = $request->status;
-        $food->vat  = $request->vat;
+        $food->price  = $request->price;
         $food->save();
 
         if ($request->hasFile('food_image')) {
@@ -74,7 +74,7 @@ class FoodController extends Controller
         $food->notes = $request->notes;
         $food->Description = $request->description;
         $food->status = $request->status;
-        $food->vat  = $request->vat;
+        $food->price  = $request->price;
         $food->save();
 
         if ($request->hasFile('food_image')) {

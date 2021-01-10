@@ -19,6 +19,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('itemPrice')->nullable();
             $table->integer('quantity')->nullable();
             $table->integer('total')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
         });
     }

@@ -6,6 +6,11 @@ Route::get('/', function () {
     return view('front.index');
 });
 
+// Profile
+Route::get('/profile/{id}', 'ProfileController@profile')->middleware('auth')->name('user.profile');
+Route::post('/profile/store/{id}', 'ProfileController@profileStore')->name('profile.store');
+Route::post('/general/store', 'ProfileController@generalStore')->name('general.store');
+
 Auth::routes();
 
 // Admin Dashboard

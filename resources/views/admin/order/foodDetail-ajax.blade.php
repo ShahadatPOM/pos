@@ -46,7 +46,7 @@ div.desc {
           <img src="{{ asset('food/'.$food->food_image) }}" class="img-fluid" alt="Food Image">
         </a>
         <div style="text-align: center; padding-top:2px">{{ $food->foodName }}</div>
-        <div class="" style="text-align: center; padding-top:2px">Price: {{ $food->vat }}tk</div>
+        <div class="" style="text-align: center; padding-top:2px">Price: {{ $food->price }}tk</div>
         <a href="#" onclick="addToCart({{$food->id}})" title="Add to Cart"  class="btn btn-primary"><i class="fa fa-shopping-basket"></i></a>
       
     </div>

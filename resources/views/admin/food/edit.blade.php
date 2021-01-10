@@ -32,13 +32,6 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Notes</label>
-                                        <input type="text" class="form-control" value="{{ $food->notes }}" name="notes" placeholder="Add notes">
-                                        @error('notes')
-                                        <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <label>Description</label>
                                         <input type="text" class="form-control" value="{{ $food->Description }}" name="description" placeholder="Add description">
                                         @error('description')
@@ -46,9 +39,9 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label>Vat</label>
-                                        <input type="number" class="form-control" value="{{ $food->vat }}" name="vat" placeholder="Add vat">
-                                        @error('vat')
+                                        <label>Price</label>
+                                        <input type="number" class="form-control" value="{{ $food->price }}" name="price" placeholder="Add price">
+                                        @error('price')
                                         <div class="alert alert-danger mt-2 mb-2">{{ $message }}</div>
                                         @enderror
                                     </div>

@@ -11,6 +11,13 @@ Route::get('/profile/{id}', 'ProfileController@profile')->middleware('auth')->na
 Route::post('/profile/store/{id}', 'ProfileController@profileStore')->name('profile.store');
 Route::post('/general/store', 'ProfileController@generalStore')->name('general.store');
 
+// user manage
+Route::get('user/list', 'AdminController@allUsers')->name('all.user');
+Route::get('user/create', 'AdminController@userCreate')->name('user.create');
+Route::post('user/store', 'AdminController@userStore')->name('user.store');
+Route::post('delete/{id}', 'AdminController@userDelete')->name('user.delete');
+
+
 Auth::routes();
 
 // Admin Dashboard
@@ -78,3 +85,6 @@ Route::group(['prefix' => 'reservation', 'as' => 'reservation.'], function() {
     Route::post('update/{id}', 'ReservationController@update')->name('update');
     Route::post('delete/{id}', 'ReservationController@delete')->name('delete');
 });
+
+
+

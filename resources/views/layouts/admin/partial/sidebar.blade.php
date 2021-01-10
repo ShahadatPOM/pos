@@ -177,7 +177,7 @@
                 </li>
 
                 {{--  Report  --}}
-                <li class="nav-item has-treeview ">
+                <!-- <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
                         <i  style="color: #E75B1E" class="far fa-clipboard"></i>
                         <p>Report</p>
@@ -191,7 +191,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 {{--  Default  --}}
                 <li class="nav-header">Default</li>

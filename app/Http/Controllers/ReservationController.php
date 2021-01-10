@@ -37,7 +37,7 @@ class ReservationController extends Controller
         $reservation->status = $request->status;
         $reservation->save();
         Session::flash('success', 'reservation added successfully');
-        return redirect()->route('reservation.index');
+        return back();
     }
     
     public function edit($id){

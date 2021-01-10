@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DataTables;
 use App\Category;
 use Image;
+use Session;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 

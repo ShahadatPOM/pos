@@ -86,5 +86,9 @@ Route::group(['prefix' => 'reservation', 'as' => 'reservation.'], function() {
     Route::post('delete/{id}', 'ReservationController@delete')->name('delete');
 });
 
+// Report
+Route::get('report', 'ReportController@report')->name('report');
+
+
 
 

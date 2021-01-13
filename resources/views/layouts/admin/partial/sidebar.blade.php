@@ -88,7 +88,7 @@
                         </li>
                     </ul>
                 </li>
-
+                @if(Auth::user()->user_type_id == 0  || Auth::user()->user_type_id == 1  )
                 {{-- Category Management --}}
                 <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
@@ -175,7 +175,7 @@
                         </li> --}}
                     </ul>
                 </li>
-
+                
                 {{--  Report  --}}
                  <li class="nav-item has-treeview ">
                     <a href="#" class="nav-link">
@@ -185,13 +185,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('sale.report')}}" class="nav-link">
                                 <i style="color:#E75B1E" class="far fa-circle nav-icon"></i>
                                 <p>Sell Report</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                @endif
 
                 {{--  Default  --}}
                 {{--  <li class="nav-header">Default</li>  --}}

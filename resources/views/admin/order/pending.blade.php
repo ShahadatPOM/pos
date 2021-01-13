@@ -24,7 +24,9 @@
                 <td>{{ $order->orderTotal }}</td>
                 <td>{{ $order->status }}</td>
                 <td class="text-center">
-                    <a href="{{ route('order.edit', $order->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>
+                    {{--  <a href="{{ route('order.edit', $order->id) }}" class="btn btn-sm btn-warning" title="edit"><i class="fa fa-edit"></i></a>  --}}
+                    <a href="{{ route('order.cancel', $order->id) }}" class="btn btn-sm btn-warning" title="cancel"><i class="fa fa-times"></i></a>
+                    <a href="{{ route('order.complete', $order->id) }}" class="btn btn-sm btn-success" title="complete"><i class="fa fa-check"></i></a>
                     <a href="{{ route('order.details', $order->id) }}" class="btn btn-sm btn-info" title="details"><i class="fa fa-eye"></i></a>
 
                     <form action="{{ route('order.delete', $order->id) }}" method="post"

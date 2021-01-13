@@ -63,12 +63,15 @@
                                 <div class="form-group">
                                     <label for="name">User Type</label>
                                     <div class="col-sm-12">
-                                    <select name="user_type_id" class="form-control">
-                                    <option selected>Select user type</option>
-                                    <option value="1">Cashier</option>
-                                    <option value="2">Manager</option>
+                                    <select required  name="user_type_id" class="form-control">
+                                    <option value="" selected>Select user type</option>
+                                    <option value="2">Cashier</option>
+                                    <option value="1">Manager</option>
+                                    
                                     </select>
+                                    
                                     </div>
+                                    
                                 </div>
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-primary">Register</button>

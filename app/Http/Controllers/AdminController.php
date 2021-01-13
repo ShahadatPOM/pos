@@ -30,6 +30,9 @@ class AdminController extends Controller
     }
 
     public function userStore(Request $request){
+        $this->validate($request, [
+            'user_type_id' => 'required'
+        ]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

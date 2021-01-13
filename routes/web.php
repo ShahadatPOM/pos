@@ -58,6 +58,8 @@ Route::group(['prefix' => 'order', 'as' => 'order.'], function() {
     Route::get('order/edit/{id}', 'OrderController@orderEdit')->name('edit');
     Route::post('order/update/{id}', 'OrderController@orderUpdate')->name('update');
     Route::post('order/delete/{id}', 'OrderController@orderDelete')->name('delete');
+    Route::get('order/cancel/{id}', 'OrderController@orderCancel')->name('cancel');
+    Route::get('order/complete/{id}', 'OrderController@orderComplete')->name('complete');
     // orderItem
     Route::get('orderItem/edit/{id}', 'OrderController@orderItemEdit')->name('item.edit');
     Route::post('orderItem/update/{id}', 'OrderController@orderItemUpdate')->name('item.update');
@@ -87,7 +89,10 @@ Route::group(['prefix' => 'reservation', 'as' => 'reservation.'], function() {
 });
 
 // Report
-Route::get('report', 'ReportController@report')->name('report');
+Route::get('sale/report', 'ReportController@saleReport')->name('sale.report');
+Route::post('report', 'ReportController@report')->name('report');
+
+
 
 
 

@@ -93,6 +93,20 @@ class OrderController extends Controller
         return view('admin.order.cancel', compact('orders'));
     }
 
+    public function orderCancel($id){
+        $order = Order::where('id', $id)->first();
+        $order->status = "cancel";
+        $order->save();
+        return back();
+    }
+
+    public function orderComplete($id){
+        $order = Order::where('id', $id)->first();
+        $order->status = "complete";
+        $order->save();
+        return back();
+    }
+
     public function addToCart(Request $request){
         $foodId = $request->foodId;
         $food = Food::where('id', $foodId)->first();

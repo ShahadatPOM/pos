@@ -39,9 +39,9 @@
                             <li class="list-group-item">
                                 <b>Designation</b> <a class="float-right">{{ $user->designation }}</a>
                             </li>
-                            <li class="list-group-item">
+                            {{--  <li class="list-group-item">
                                 <b>status</b> <small class="float-right">@if($user->status == 0) <span class="badge badge-warning">Inactive</span> @else <span class="badge badge-success">Active</span> @endif</small>
-                            </li>
+                            </li>  --}}
                         </ul>
                     </div>
                     <!-- /.card-body -->

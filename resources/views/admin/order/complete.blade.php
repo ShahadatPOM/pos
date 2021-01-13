@@ -5,8 +5,7 @@
     <hr>
     {{--  <a href="{{ route('category.create') }}" class="btn btn-info ml-3">Add New</a>  --}}
     <br><br>
-<a target="_blank" href="{{ route('report') }}"><button class="btn btn-info" ><i class="fa fa-print"></i>  Print</button></a>
-<hr>
+    
     <table class="table table-bordered table-striped" id="order_table">
         <thead>
             <tr>
